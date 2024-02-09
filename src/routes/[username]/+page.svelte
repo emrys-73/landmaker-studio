@@ -170,23 +170,23 @@
                 </a>
             </div>
         </div>
-        <div class="md:w-3/4 w-full mb-36 mt-16 items-start min-h-full z-20">
+        <div class="md:w-3/4 w-full mb-36 mt-16 items-start min-h-full z-20 flex justify-center">
             {#if loaded}
                 <!-- {systemMessage[0].content} -->
-                <ul class="w-full rounded-2xl overflow-hidden">
+                <ul class="w-full rounded-2xl overflow-hidden mx-2">
                     {#each $messages as message}
                         {#if message.role == "user"}
-                            <li class="bg-black bg-opacity-10 backdrop-blur-lg w-full px-6 py-2 opacity-80">{message.content}</li>
+                            <li class="bg-black bg-opacity-20 backdrop-blur-lg w-full px-6 py-2 opacity-80">{message.content}</li>
                         {:else}
                             {#if message.role == "assistant"}
-                                <li class="{data?.user?.darkMode  ? 'bg-white bg-opacity-10' : 'bg-black bg-opacity-20'} w-full px-6 py-2 backdrop-blur-xl">{message.content}</li>
+                                <li class="{data?.user?.darkMode  ? 'bg-white bg-opacity-20' : 'bg-black bg-opacity-40'} w-full px-6 py-2 backdrop-blur-xl">{message.content}</li>
                             {/if}
                         {/if}
                     {/each}
                 </ul>
             {/if}
         </div>
-        <form on:submit={handleSubmit} class="fixed bg-transparent lg:bottom-0 pb-6 pt-4 backdrop-blur-2xl bottom-0 w-full flex flex-col px-6 lg:px-20 xl:px-80 items-center gap-2 z-20">
+        <form on:submit={handleSubmit} class="fixed {data?.user?.ai_darkMode ? 'bg-black bg-opacity-30' : ''} {data?.user?.ai_darkMode ? 'text-white' : 'text-white'} lg:bottom-0 pb-6 pt-4 backdrop-blur-2xl bottom-0 w-full flex flex-col px-6 lg:px-20 xl:px-80 items-center gap-2 z-20">
             <!-- Prolly add action pool? -->
             <div class="w-full flex flex-row justify-start items-center gap-3">
                 {#each data?.user?.links as l}    
@@ -198,7 +198,7 @@
                 {/each}
             </div>
             <div class="flex flex-row w-full gap-4">
-                <input bind:value={$input} class="w-full h-full bg-transparent rounded-2xl border-2 px-4 py-2 border-white border-opacity-20 text-sm placeholder:text-white placeholder:text-opacity-60" placeholder="Ask anything" />
+                <input bind:value={$input} class="w-full h-full bg-black bg-opacity-20 rounded-2xl border-2 px-4 py-2 border-white border-opacity-20 text-sm placeholder:text-white" placeholder="Ask anything" />
                 <button type="submit" class="{$animate} opacity-80 hover:opacity-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
